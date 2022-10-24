@@ -1,0 +1,141 @@
+
+#menu {
+background: #A0C542;
+padding: 5px 15px;
+}
+#menu li {
+display: inline-block;
+list-style: none;
+padding: 5px;
+font: bold 14px verdana, sans-serif;
+}
+
+#seccion {
+float: left;
+width: 1100px;
+margin: 20px;
+}
+#columna {
+float: left;
+width: 220px;
+margin: 20px 0px;
+padding: 20px;
+background: #7DD0DA;
+}
+
+
+         p{
+             
+          font-size: 10px;   
+         }
+         body {
+text-align: center;
+}
+      #agrupar {
+width: 1160px;
+margin: 15px auto;
+text-align: left;
+}
+
+#cabecera {
+background: #7DD0DA;
+border: 2px solid #999999;
+padding: 20px;
+}
+       span{
+             
+          font-size: 20px;   
+         }
+         #titulo{
+             font-size: 20px;
+             background-color: yellowgreen;
+             font-family:fantasy;
+            border: solid black;
+         }
+          .titulo2{
+             font-size: 50px;
+             background-color: yellowgreen;
+             font-family:fantasy;
+             border: solid black;
+            
+         }
+         h1 {
+font: bold 20px verdana, sans-serif;
+} h2 {
+font: bold 14px verdana, sans-serif;
+}
+h3{
+    
+    font-style: 30px;
+}
+ p:nth-child(3){
+background: #999999;
+ }
+ 
+ header, section, footer, aside, nav, article, figure, figcaption,
+hgroup{
+display: block;
+}
+
+#pie {
+clear: both;
+text-align: center;
+padding: 20px;
+border-top: 2px solid #999999;
+}
+#agrupar2 {
+clear: both;
+text-align: center;
+padding: 20px;
+border-top: 2px solid #999999;
+}
+article {
+background: #7DD0DA;
+border: 1px solid #999999;
+padding: 20px;
+margin-bottom: 15px;
+text-align: center;
+}
+article footer {
+text-align: right;
+}
+time {
+color: #999999;
+}
+
+figcaption {
+font: italic 14px verdana, sans-serif;
+}
+div {
+
+
+border: 1px solid #000000;
+
+
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+ border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+fieldset{ 
+  display: block;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  
+}
