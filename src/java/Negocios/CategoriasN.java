@@ -26,7 +26,11 @@ public class CategoriasN {
     Connection conecta = con.conectar();
     String sql ;
             
-    
+    public static void main(String[] args) {
+        CategoriasN cc = new CategoriasN();
+        
+        cc.consultarTodosG();
+    }
     
     
     public void guardar(CategoriasD cate){

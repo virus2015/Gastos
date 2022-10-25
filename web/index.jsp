@@ -178,19 +178,20 @@ sAhora += "-"+dia;
           
           
           </tr>
+          
+          
                <%
                   
         Conexion con = new Conexion ();
         Connection conectar = con.conectar();
         ResultSet resultado;
         int monto=0;
-        String sql =" select gg.IDGASTOS as id,gg.cantidad as cantidad, "
-                + "aa.nombre as producto,aa.DESCRIPCION as   descripcion,gg.monto as monto,"
-                + " aa.MARCA as marca,tt.NOMBRE as tienda,cg.descripcion as categoria,gg.fecha as fecha  "
-                + " from gastosg gg  inner join articulosg aa   on aa.idarticulos = gg.frk_idarticulos  "
-                + "    inner join categoriasg cg     on cg.idcategorias= gg.frk_idcategorias  "
-                + "   inner join tiendasg tt         on tt.idTiendas = gg.frk_idTiendas   "
-                + " where gg.fecha= to_char(sysdate,'DD-MM-YY')  AND cg.frk_idgastosfijos=2  "; 
+        String sql =" select g2.idgastos AS idgastos,a2.nombre as nombre,a2.descripcion as detalle, "
+                + "g2.precioarticulo as precio, g2.preciokg_paquete as pre_mayo,g2.cantidad as cantidad, c2.descripcion as descripcion,"
+                + "g2.fecha  as fecha,cr2.idcreditos,  cr2.montocredito,cr2.descripcion as Descripcion_credito    from gastosg2 g2"
+                + "inner join articulosg2 a2   on g2.frk_idArticulos= a2.idArticulos"
+                + "inner join categoriasg2 c2  on c2.idcategorias = a2.frk_idCategorias"               
+                + " inner join creditosg2 cr2   on cr2.idcreditos= g2.frk_idcredito where c2.frk_idgastos=2"; 
         PreparedStatement psmt = conectar.prepareStatement(sql);
         resultado = psmt.executeQuery();
         while(resultado.next()){
@@ -199,17 +200,18 @@ sAhora += "-"+dia;
                 %>
           
           <tr>  
-              <td><%=resultado.getString("id")  %></td>
-              <td><%=resultado.getString("cantidad")  %></td>
-               <td><%=resultado.getString("producto")  %></td>
-                <td><%=resultado.getString("descripcion")  %></td>
-                <td><%=resultado.getString("monto")  %></td>
-                 <td><%=resultado.getString("marca")  %></td>
-                 <td><%=resultado.getString("tienda")  %></td>  
-                 <td><%=resultado.getString("categoria")  %></td>  
-                    <td><%=resultado.getDate("fecha")  %></td>
-                    <td><A href="/Gastos/ServEliminarGastos?id=<%=resultado.getString("id") %>">ELIMINAR</A></td>
-                    <td><A href="EditarGastos.jsp?id=<%=resultado.getString("id")  %>">EDITAR</A></td>
+              <td><%=resultado.getString("idgastos")  %></td>
+              <td><%=resultado.getString("nombre")  %></td>
+               <td><%=resultado.getString("detalle")  %></td>
+                <td><%=resultado.getString("precio")  %></td>
+                <td><%=resultado.getString("pre_mayo")  %></td>
+                 <td><%=resultado.getString("descripcion")  %></td>
+                 <td><%=resultado.getString("fecha")  %></td>  
+                 <td><%=resultado.getString("idcreditos")  %></td>  
+                    <td><%=resultado.getDate("montocredito")  %></td>
+                     <td><%=resultado.getDate("Descripcion_credito")  %></td>
+                    <td><A href="/Gastos/ServEliminarGastos?id=<%=resultado.getString("idgastos") %>">ELIMINAR</A></td>
+                    <td><A href="EditarGastos.jsp?id=<%=resultado.getString("idgastos")  %>">EDITAR</A></td>
                     
                     
                     
@@ -226,14 +228,12 @@ sAhora += "-"+dia;
         Connection conectar2 = con2.conectar();
         ResultSet resultado2;
       
-        String sql2 ="select sum(gg.monto) as monto from gastosg gg"
-                + " inner join articulosg aa"
-                + " on aa.idarticulos = gg.frk_idarticulos"
-                + " inner join categoriasg cg"
-                + " on cg.idcategorias= gg.frk_idcategorias  "
-                + "inner join tiendasg tt  "
-                + "on tt.idTiendas = gg.frk_idTiendas "
-                + " where gg.fecha= to_char(sysdate,'DD-MM-YY') AND cg.frk_idgastosfijos=2   ";
+        String sql2 ="select sum(g2.precioarticulo) as monto  from gastosg2 g2"
+                + "  inner join articulosg2 a2   on g2.frk_idArticulos= a2.idArticulos"
+                + "  inner join categoriasg2 c2  on c2.idcategorias = a2.frk_idCategorias "
+                + "  inner join creditosg2 cr2   on cr2.idcreditos= g2.frk_idcredito "
+                + "  where c2.frk_idgastos=2";
+               
         PreparedStatement psmt2 = conectar2.prepareStatement(sql2);
         resultado2 = psmt2.executeQuery();
         while(resultado2.next()){
